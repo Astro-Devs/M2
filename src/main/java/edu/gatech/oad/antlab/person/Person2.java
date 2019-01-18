@@ -1,4 +1,5 @@
 package edu.gatech.oad.antlab.person;
+import java.util.Random;
 
 /**
  *  A simple class for person 2
@@ -31,8 +32,39 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  //Person 2 put your implementation here
-	  return null;
-	}
+        char[] wordArray = input.toCharArray();
+        int[] stringIndex = new int[wordArray.length];
+
+        for (int i = 0; i < stringIndex.length; i++) {
+            stringIndex[i] = i;
+        }
+
+        int[] test = RandomizeArray(stringIndex);
+
+        String finalS = "";
+        for (int i = 0; i < test.length; i++) {
+            finalS += wordArray[test[i]];
+        }
+        return finalS;
+    }
+
+    /**
+     *
+     * @param array an array of ints defining the length of the string
+     * @return randomized version of array
+     */
+    private static int[] RandomizeArray(int[] array){
+        Random rgen = new Random();  // Random number generator
+
+        for (int i=0; i<array.length; i++) {
+            int randomPosition = rgen.nextInt(array.length);
+            int temp = array[i];
+            array[i] = array[randomPosition];
+            array[randomPosition] = temp;
+        }
+
+        return array;
+    }
 	/**
 	 * Return a string rep of this object
 	 * that varies with an input string
